@@ -1,0 +1,8 @@
+{
+    "name": "contract-reactor-examples",
+    "dependencies": {
+        "bootstrap": "~3.2.0",
+        "ethereum.js": "https://github.com/ethereum/ethereum.js.git#0b84376721b7cadb011d32d11efa74e616915d5d",
+        "react": "0.13.1"
+    }
+}

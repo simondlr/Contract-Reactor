@@ -1,0 +1,75 @@
+[
+   {
+      "constant" : true,
+      "inputs" : [
+         {
+            "name" : "_word",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "getOneWord",
+      "outputs" : [
+         {
+            "name" : "_returnWord",
+            "type" : "bytes32"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "_newWord",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "setPublicWord",
+      "outputs" : [
+         {
+            "name" : "public_word",
+            "type" : "bytes32"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : true,
+      "inputs" : [],
+      "name" : "public_word",
+      "outputs" : [
+         {
+            "name" : "",
+            "type" : "bytes32"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : true,
+      "inputs" : [],
+      "name" : "getBothWords",
+      "outputs" : [
+         {
+            "name" : "_public_word",
+            "type" : "bytes32"
+         },
+         {
+            "name" : "_private_word",
+            "type" : "bytes32"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "inputs" : [
+         {
+            "indexed" : false,
+            "name" : "_newWord",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "logNewWord",
+      "type" : "event"
+   }
+]
