@@ -16,7 +16,7 @@ See examples for basic version (to use it, use bower to fetch the components).
 
 To use in production, simply add reactor.jsx as a script (see examples section).
 
-For the examples, the web root should one directory up (so as to include the corret reactor.jsx). If you have reactor.jsx in the same folder, then just change the path in the examples.
+For the examples, the web root should be one directory up (so as to include the correct reactor.jsx). If you have reactor.jsx in the same folder, then just change the path in the examples.
 
 ## TODO
 
