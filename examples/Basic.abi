@@ -34,6 +34,22 @@
       "type" : "function"
    },
    {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "_public_word",
+            "type" : "bytes32"
+         },
+         {
+            "name" : "_private_word",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "setPublicAndPrivate",
+      "outputs" : [],
+      "type" : "function"
+   },
+   {
       "constant" : true,
       "inputs" : [],
       "name" : "public_word",
@@ -62,6 +78,7 @@
       "type" : "function"
    },
    {
+      "anonymous" : false,
       "inputs" : [
          {
             "indexed" : false,

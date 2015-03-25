@@ -13,6 +13,12 @@ contract Basic {
         logNewWord(_newWord);
     }
 
+    //generates ABI function + multiple arguments
+    function setPublicAndPrivate(bytes32 _public_word, bytes32 _private_word) {
+        public_word = _public_word;
+        private_word = _private_word;
+    }
+
     //generates ABI event
     event logNewWord(bytes32 _newWord);
     
