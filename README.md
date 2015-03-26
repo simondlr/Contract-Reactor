@@ -18,15 +18,14 @@ For the examples, the web root should be one directory up (so as to include the 
 
 ## TODO
 
-- Add transact (and not just call()).
-- Add contract state as component state.
-- Add natspec support.
 - Add prop validaton for development mode of React.
+- Add contract state as component state? [Unsure, because you might not want to trust the DOM vs doing a call() instead each time?]
+- Add natspec support? [Unsure if needed/required/possible]
 - Write simple tests.
 
 Longer term ideas.
-- Add possibility to also create/submit contract.
-- Create different types of "views", potentially developing this into a more full-fledged Ethereum front-end framework.
+- Add possibility to also create/submit contract. [Useful to more quickly bootstrap contract testing]
+- Create different types of "views", potentially developing this into a more full-fledged Ethereum front-end framework. [up in the air]
 
 ## Notes
 
