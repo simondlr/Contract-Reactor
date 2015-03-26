@@ -1,4 +1,4 @@
-#Contract Reactor
+#Contract Reactor (Alpha)
 
 Given a contract ABI & contract address, the "Contract Reactor" automatically creates a React component to interact with that contract. It creates functions and forms to pass arguments to them. Mainly useful (at this point) as a way to easily scaffold front-end functions to interact with a contract during testing.
 
@@ -18,6 +18,7 @@ For the examples, the web root should be one directory up (so as to include the 
 
 ## TODO
 
+- Show returned values (if any).
 - Add prop validaton for development mode of React.
 - Add contract state as component state? [Unsure, because you might not want to trust the DOM vs doing a call() instead each time?]
 - Add natspec support? [Unsure if needed/required/possible]

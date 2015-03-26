@@ -24,7 +24,7 @@ var Reactor = React.createClass({
 var FunctionWrapper = React.createClass({
     executeFunction: function(type) {
         args = {};
-        //get inputs
+        //get inputs [replace with pure js as this requires jquery as a dependency]
         $.each(this.refs, function(i, obj) {
               args[obj.props.arg] = obj.state.value; //map inputs to a dictionary
         });
