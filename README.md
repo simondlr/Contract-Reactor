@@ -2,8 +2,6 @@
 
 Given a contract ABI & contract address, the "Contract Reactor" automatically creates a React component to interact with that contract. It creates functions and forms to pass arguments to them. Mainly useful (at this point) as a way to easily scaffold front-end functions to interact with a contract during testing.
 
-(Note: Not fully usable yet. Only functions without arguments work).
-
 ## Installation
 
 It requires React.js & Ethereum.js (web3). If other Javascript APIs become available, it will be made more modular. See bower.json in examples for an example.
@@ -20,8 +18,6 @@ For the examples, the web root should be one directory up (so as to include the 
 
 ## TODO
 
-- Add argument support.
-- Add input forms to pass as arguments.
 - Add transact (and not just call()).
 - Add contract state as component state.
 - Add natspec support.

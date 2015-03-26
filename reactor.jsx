@@ -22,15 +22,20 @@ var Reactor = React.createClass({
 });
 
 var FunctionWrapper = React.createClass({
-    callFunction: function() { //currently only works for functions without arguments
+    callFunction: function() {
+        args = {};
+        //get inputs
+        $.each(this.refs, function(i, obj) {
+              args[obj.props.arg] = obj.state.value; //map inputs to a dictionary
+        });
         var function_name = this.props.data.name.split("(")[0]; //seems very hacky to get only function name. It's written as 'function(args)' usually.
-        this.props.instance[function_name](); //currently call without args
+        this.props.instance[function_name](args);
     },
     render: function() {
+        //use react refs to keep track of inputs to a function.
         return (<div>
             {this.props.data.inputs.map(function(result) {
-                 return <div key={result.name}> <InputWrapper /> </div>
-                 
+                 return <div key={result.name}> <InputWrapper ref={result.name} arg={result.name}/> </div>
             }, this)}
             <a href="#" onClick={this.callFunction}>Call() {this.props.data.name}</a>
         </div>
@@ -48,7 +53,8 @@ var InputWrapper = React.createClass({
         this.setState({value: event.target.value});
     },
     render: function() {
-        return <input type="text" value={this.state.value} onChange={this.handleChange} />
+        return <input type="text" value={this.state.value} onChange={this.handleChange}/>
     }
 });
+
 
