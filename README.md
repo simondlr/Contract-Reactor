@@ -4,11 +4,11 @@ Given a contract ABI & contract address, the "Contract Reactor" automatically cr
 
 ## Installation
 
-It requires React.js & Ethereum.js (web3). If other Javascript APIs become available, it will be made more modular. See bower.json in examples for an example.
+It requires React.js & Web3. If other Javascript APIs become available, it will be made more modular. See bower.json in examples for an example.
 
 ## Using it
 
-As props, you must pass the ABI (as JSON) & the instance of the contract (an object) as created through Ethereum.js (web3). If other Javascript APIs become available they should probably follow a similar format (ie "contract.doSomething(args)") and thus it should be able to continue working without requiring Ethereum.js. This will be changed later as required. 
+As props, you must pass the ABI (as JSON) & the instance of the contract (an object) as created through web3. If other Javascript APIs become available they should probably follow a similar format (ie "contract.doSomething(args)") and thus it should be able to continue working without requiring web3. This will be changed later as required. 
 
 See examples for basic version (to use it, use bower to fetch the components).
 
@@ -30,7 +30,7 @@ Longer term ideas.
 
 ## Notes
 
-Using Ethereum.js -> 0b84376721b7cadb011d32d11efa74e616915d5d [March 24 2015]
+Last tested using web3.js -> 38641dfa9c (Develop branch)
 
 ##Licence
 

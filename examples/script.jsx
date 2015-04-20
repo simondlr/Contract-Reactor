@@ -1,6 +1,8 @@
 //EXAMPLE
 var abi;
-var address = "0x0"; //change this to a real address if it has been pushed to the network.
+var address = "0x9e78ee996d0160cf72f00d73462f6ea167736431"; //change this to a real address if it has been pushed to the network.
+console.log(address);
+console.log(web3.eth.coinbase);
 $.ajax({
   url: "Basic.abi",
   dataType: 'json',

@@ -5,6 +5,7 @@ var Reactor = React.createClass({
         }
     },
     render: function() {
+        console.log(this.props.instance);
         return (
         <div>
             Address of contract is {this.props.instance.address}.
