@@ -18,7 +18,6 @@ For the examples, the web root should be one directory up (so as to include the 
 
 ## TODO
 
-- Show returned values (if any).
 - Add prop validaton for development mode of React.
 - Add contract state as component state? [Unsure, because you might not want to trust the DOM vs doing a call() instead each time?]
 - Add natspec support? [Unsure if needed/required/possible]
@@ -30,7 +29,7 @@ Longer term ideas.
 
 ## Notes
 
-Last tested using web3.js -> 38641dfa9c (Develop branch)
+Last tested using web3.js -> 0.4.2
 
 ##Licence
 
