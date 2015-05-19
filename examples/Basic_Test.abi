@@ -1,0 +1,47 @@
+[
+   {
+      "constant" : true,
+      "inputs" : [],
+      "name" : "owner",
+      "outputs" : [
+         {
+            "name" : "",
+            "type" : "address"
+         }
+      ],
+      "type" : "function"
+   },
+   {
+      "constant" : false,
+      "inputs" : [
+         {
+            "name" : "_message",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "event_fire",
+      "outputs" : [],
+      "type" : "function"
+   },
+   {
+      "inputs" : [],
+      "type" : "constructor"
+   },
+   {
+      "anonymous" : false,
+      "inputs" : [
+         {
+            "indexed" : true,
+            "name" : "user",
+            "type" : "address"
+         },
+         {
+            "indexed" : false,
+            "name" : "message",
+            "type" : "bytes32"
+         }
+      ],
+      "name" : "registerEvent",
+      "type" : "event"
+   }
+]
