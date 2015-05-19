@@ -9,6 +9,7 @@ var Reactor = React.createClass({
         return (
         <div>
             Address of contract is {this.props.instance.address}.
+            <DeployWrapper address={this.props.instance.address}/>
             <ul>
                 {this.props.abi.map(function(result) {
                    if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.
@@ -22,6 +23,38 @@ var Reactor = React.createClass({
     }
 });
 
+var DeployWrapper = React.createClass({
+    getInitialState: function() {
+        //check if contract exists
+        //if not
+        getCode = web3.eth.getCode(this.props.address);
+        var submitted = true;
+        if (getCode == "0x") {
+            submitted = false;
+            console.log("Contract doesn't exist.");
+        }
+        return {
+           submitted : submitted,
+        }
+    },
+    render: function() {
+        console.log(this.state.submitted);
+        if(this.state.submitted == true) {
+            return (
+                <div>
+                    Contract exists on the blockchain.   
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    Contract does not exist on the blockchain. Deploy here.
+                </div>
+            );
+        }
+    }
+});
+
 var FunctionWrapper = React.createClass({
     executeFunction: function(type) {
         args = {};
@@ -31,9 +64,11 @@ var FunctionWrapper = React.createClass({
         });
         var function_name = this.props.data.name.split("(")[0]; //seems very hacky to get only function name. It's written as 'function(args)' usually.
         if(type == "call") {
-            this.props.instance.call()[function_name](args);
+            result = this.props.instance[function_name].call(args);
+            console.log(result);
         } else if(type == "transact") {
-            this.props.instance.sendTransaction()[function_name](args);
+            result = this.props.instance[function_name].sendTransaction(args);
+            console.log(result);
         }
     },
     render: function() {
