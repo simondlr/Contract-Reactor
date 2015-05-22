@@ -1,0 +1,14 @@
+{
+    "contract_paths": [
+        {
+            "contract_path": "contracts/Basic_Test.sol"
+        }
+    ],
+    "contract_addresses":
+    { 
+        "Basic_Test": "0xa206c162996a2ee95455991f566ee4b376d52445",
+        "Multiple_Contracts": "0xa206c162996a2ee95455991f566ee4b376d52445"
+    }
+    
+}
+ 

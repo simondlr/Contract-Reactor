@@ -14,35 +14,41 @@ var urlParams;
 })();
 /*------------------*/
 
-var address;
-if("address" in urlParams) {
-    address = urlParams['address'];
+var config;
+if("config" in urlParams) {
+    config = urlParams['config'];
 } else {
-    var address = '0xa206c162996a2ee95455991f566ee4b376d52445'; //random default
+    var config = 'example_config.json'; //random default
 }
-
-var contract;
-if("contract" in urlParams) {
-    contract = urlParams['contract'];
-} else {
-    var contract = "contracts/Basic_Test.sol"; //default
-}
-
 
 $.ajax({
-    url: contract,
-    dataType: 'text',
+    url: config,
+    dataType: 'json',
     cache: false,
+    error: function(data) {
+        console.log(data);
+    },
     success: function(data) {
-        compiled = web3.eth.compile.solidity(data);
-        console.log(compiled.info.abiDefinition);
-        var abi = compiled.info.abiDefinition;
-        $.each(abi, function(i, obj) {
-            //use obj.id and obj.name here, for example:
-            console.log(obj);
+        //map through multiple contracts (this includes multiple ones in 1 file + different files.
+        console.log(data);
+        var total_compiled = {};
+        var addresses = {}; 
+        $.each(data.contract_paths, function(i, obj) {
+            $.ajax({
+                url: obj.contract_path,
+                dataType: 'text',
+                cache: false,
+                async: false,
+                success: function(contract) {
+                    compiled = web3.eth.compile.solidity(contract);
+                    console.log(Object.keys(compiled)[0]);
+                    addresses[Object.keys(compiled)[0]] = data.contract_addresses[Object.keys(compiled)[0]];
+                    $.extend(total_compiled, compiled);
+                }
+            });     
         });
-        var Mycontract = web3.eth.contract(abi);
-        var instance = Mycontract.at(address);
-        React.render(<Reactor abi={abi} instance={instance}/>, document.getElementById('contract'));
-  },
+        console.log(total_compiled); 
+        console.log(addresses); 
+        React.render(<Reactor compiled={total_compiled} addresses={addresses}/>, document.getElementById('contracts'));
+    }
 });

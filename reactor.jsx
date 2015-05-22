@@ -1,23 +1,19 @@
 var Reactor = React.createClass({
-    getInitialState: function() {
+    /*getInitialState: function() {
         return {
             blockNumber: "", //todo, later for potentially adding contract creation as well.
         }
-    },
+    },*/
     render: function() {
-        console.log(this.props.instance);
         return (
         <div>
-            Address of contract is {this.props.instance.address}.
-            <DeployWrapper address={this.props.instance.address}/>
-            <ul>
-                {this.props.abi.map(function(result) {
-                   if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.
-                       //react key = unique function name for contract.
-                       return <FunctionWrapper instance={this.props.instance} key={result.name} data={result}/>;
-                   }
-                }, this)}
-            </ul>
+            {Object.keys(this.props.compiled).map(function(result) { //iterate through multiple contracts based on keys
+                console.log(this.props.compiled[result]);
+                var abi = this.props.compiled[result].info.abiDefinition;
+                var contract = web3.eth.contract(abi);
+                var instance = contract.at(this.props.addresses[result]);
+                return <div key={result}> <hr/> <ContractWrapper abi={abi} instance={instance} /> </div>;
+            }, this)}
         </div>
         );
     }
@@ -26,7 +22,7 @@ var Reactor = React.createClass({
 var DeployWrapper = React.createClass({
     getInitialState: function() {
         //check if contract exists
-        //if not
+        //TODO: Code must match compiled code.
         getCode = web3.eth.getCode(this.props.address);
         var submitted = true;
         if (getCode == "0x") {
@@ -38,7 +34,6 @@ var DeployWrapper = React.createClass({
         }
     },
     render: function() {
-        console.log(this.state.submitted);
         if(this.state.submitted == true) {
             return (
                 <div>
@@ -54,6 +49,26 @@ var DeployWrapper = React.createClass({
         }
     }
 });
+
+var ContractWrapper = React.createClass({
+    render: function() {
+        return (
+            <div>
+            Specified address of contract is {this.props.instance.address}.
+            <DeployWrapper address={this.props.instance.address}/>
+            <ul>
+                {this.props.abi.map(function(result) {
+                   if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.
+                       //react key = unique function name for contract.
+                       return <FunctionWrapper instance={this.props.instance} key={result.name} data={result}/>;
+                   }
+                }, this)}
+            </ul>
+            </div>
+        );
+    }
+});
+
 
 var FunctionWrapper = React.createClass({
     executeFunction: function(type) {
@@ -77,7 +92,8 @@ var FunctionWrapper = React.createClass({
             {this.props.data.inputs.map(function(result) {
                  return <div key={result.name}> <InputWrapper ref={result.name} arg={result.name} /> </div>
             }, this)}
-            <a href="#" onClick={this.executeFunction.bind(this,"call")}>Call() {this.props.data.name}</a> - <a href="#" onClick={this.executeFunction.bind(this,"transact")}>Transact() {this.props.data.name}</a>
+            <button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"call")}>Call() {this.props.data.name}</button> - <button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"transact")}>Transact() {this.props.data.name}</button>
+            <br /><br />
         </div>
         );
     }
@@ -93,7 +109,7 @@ var InputWrapper = React.createClass({
         this.setState({value: event.target.value});
     },
     render: function() {
-        return <input type="text" value={this.state.value} placeholder={this.props.arg} onChange={this.handleChange}/>
+        return <input className={"form-control"} type="text" value={this.state.value} placeholder={this.props.arg} onChange={this.handleChange}/>
     }
 });
 
