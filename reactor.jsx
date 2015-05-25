@@ -1,63 +1,29 @@
 var Reactor = React.createClass({
-    /*getInitialState: function() {
-        return {
-            blockNumber: "", //todo, later for potentially adding contract creation as well.
-        }
-    },*/
     render: function() {
         return (
         <div>
             {Object.keys(this.props.compiled).map(function(result) { //iterate through multiple contracts based on keys
                 console.log(this.props.compiled[result]);
-                var abi = this.props.compiled[result].info.abiDefinition;
-                var contract = web3.eth.contract(abi);
+                //var abi = this.props.compiled[result].info.abiDefinition;
+                var contract = web3.eth.contract(this.props.compiled[result].info.abiDefinition);
                 var instance = contract.at(this.props.addresses[result]);
-                return <div key={result}> <hr/> <ContractWrapper abi={abi} instance={instance} /> </div>;
+                <hr/>
+                return <ContractWrapper key={result} name={result} compiled={this.props.compiled[result]} instance={instance} />;
             }, this)}
         </div>
         );
     }
 });
 
-var DeployWrapper = React.createClass({
-    getInitialState: function() {
-        //check if contract exists
-        //TODO: Code must match compiled code.
-        getCode = web3.eth.getCode(this.props.address);
-        var submitted = true;
-        if (getCode == "0x") {
-            submitted = false;
-            console.log("Contract doesn't exist.");
-        }
-        return {
-           submitted : submitted,
-        }
-    },
-    render: function() {
-        if(this.state.submitted == true) {
-            return (
-                <div>
-                    Contract exists on the blockchain.   
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    Contract does not exist on the blockchain. Deploy here.
-                </div>
-            );
-        }
-    }
-});
 
 var ContractWrapper = React.createClass({
     render: function() {
         return (
             <div>
             Specified address of contract is {this.props.instance.address}.
-            <DeployWrapper address={this.props.instance.address}/>
+            <DeployWrapper compiled={this.props.compiled} name={this.props.name} instance={this.props.instance}/>
             <ul>
-                {this.props.abi.map(function(result) {
+                {this.props.compiled.info.abiDefinition.map(function(result) {
                    if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.
                        //react key = unique function name for contract.
                        return <FunctionWrapper instance={this.props.instance} key={result.name} data={result}/>;
@@ -69,6 +35,40 @@ var ContractWrapper = React.createClass({
     }
 });
 
+var DeployWrapper = React.createClass({
+    getInitialState: function() {
+        //check if contract exists
+        codeOnChain = web3.eth.getCode(this.props.instance.address);
+        var submitted = true;
+        console.log(this.props.name);
+        if (codeOnChain != this.props.compiled.code) {
+            submitted = false;
+            console.log("Contract doesn't exist.");
+        }
+        return {
+           submitted : submitted,
+        }
+    },
+    deployContract: function() {
+        var address = web3.eth.sendTransaction({from: web3.eth.accounts[0], data: this.props.compiled.code}); //TODO: change to include other accounts
+        console.log(result); //TODO: Add callback that cascades back and sets addresses for contracts.
+    },
+    render: function() {
+        if(this.state.submitted == true) {
+            return (
+                <div>
+                    Contract exists on the blockchain.   
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    Contract does not exist on the blockchain. <button className={"btn btn-default"} onClick={this.deployContract}>Deploy Contract {this.props.name}</button>
+                </div>
+            );
+        }
+    }
+});
 
 var FunctionWrapper = React.createClass({
     executeFunction: function(type) {
