@@ -1,14 +1,27 @@
 {
-    "contract_paths": [
-        {
-            "contract_path": "contracts/Basic_Test.sol"
+    "contracts": { 
+        "Basic_Test": {
+            "address": "0xbc72cf3079e08295364510917f92a10d0d54f9d2",
+            "path": "contracts/Basic_Test.sol",
+            "template": {
+                "event_fire": {
+                    "_message": {
+                        "label": "Event Firing Message"
+                    }
+                }
+            }
+        },
+        "Multiple_Contracts": {
+            "address": "0xa206c162996a2ee95455991f566ee4b376d52445",
+            "path": "contracts/Basic_Test.sol",
+            "template": {
+                "setText": {
+                    "_newText": {
+                        "label": "Enter a new text."
+                    }
+                }
+            }
         }
-    ],
-    "contract_addresses":
-    { 
-        "Basic_Test": "0xbc72cf3079e08295364510917f92a10d0d54f9d2",
-        "Multiple_Contracts": "0xa206c162996a2ee95455991f566ee4b376d52445"
     }
-    
 }
  
