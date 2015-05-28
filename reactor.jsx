@@ -2,8 +2,6 @@
 //TODO: config.json doesn't feel 100% the best route to take... Potentially refactor into one, and allow rewriting of it (when addresses are created)
 //TODO: Templating should be derived from the .sol eventually.
 
-//Top core. This is the "IDE" part of the framework. Not entirely supposed to be re-usable.
-//Just a way to iterate through and start the cascade down for each contract
 var Reactor = React.createClass({
     render: function() {
         return (
@@ -15,6 +13,23 @@ var Reactor = React.createClass({
                 var instance = contract.at(this.props.addresses[result]);
                 <hr/>
                 var contract_template = {};
+                var new_compiled = this.props.compiled;
+                var abi = this.props.compiled[result].info.abiDefinition;
+                if(this.props.options[result]["template_overlay"] == false) {
+                    //remove parts of the ABI.
+                    $.each(abi, function(i, obj) {
+                        if(obj.name != undefined) {
+                            console.log(this.props.templates[result]);
+                            if(this.props.templates[result].hasOwnProperty(obj.name) == false) {
+                                console.log(abi[i]);
+                                delete abi[i];
+                            }
+                        }
+                    }.bind(this));
+                    console.log("false");
+                    
+                }
+
                 if(this.props.templates.hasOwnProperty(result)) {
                     contract_template = this.props.templates[result]; //if a contract has a template.
                 }

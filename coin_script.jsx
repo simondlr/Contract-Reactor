@@ -34,7 +34,6 @@ $.ajax({
         var total_compiled = {};
         var addresses = {}; 
         var templates = {};
-        var options = {};
         Object.keys(data["contracts"]).map(function(contract_name) { //iterate through multiple contracts based on keys
             $.ajax({
                 //fetch .sol and compile it, adding compiled result & its specified address to separate dictionaries
@@ -53,7 +52,6 @@ $.ajax({
                         if(total_compiled.hasOwnProperty(compiled_contract_name) == false) { //not yet inserted
                             addresses[compiled_contract_name] = data["contracts"][compiled_contract_name].address; //not sure why I've been doing [] & . notation here.
                             templates[compiled_contract_name] = data["contracts"][compiled_contract_name].template;
-                            options[compiled_contract_name] = {"template_overlay": data["contracts"][compiled_contract_name].template_overlay};
                         }
                     });
                     $.extend(total_compiled, compiled);
@@ -63,7 +61,7 @@ $.ajax({
         console.log(total_compiled); 
         console.log(addresses); 
         console.log(templates); 
-        console.log(options); 
-        React.render(<Reactor templates={templates} compiled={total_compiled} addresses={addresses} options={options}/>, document.getElementById('contracts'));
+        console.log(options); //any additional configurations/options that don't fit in the previous sets.
+        React.render(<Reactor templates={templates} compiled={total_compiled} addresses={addresses} options={options} />, document.getElementById('contracts'));
     }
 });
