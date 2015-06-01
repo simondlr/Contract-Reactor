@@ -6,8 +6,10 @@
             "template_overlay": true, 
             "template": {
                 "event_fire": {
-                    "_message": {
-                        "label": "Event Firing Message Yo Whatever"
+                    "inputs": {
+                        "_message": {
+                            "label": "Event Firing Message Yo Whatever"
+                        }
                     }
                 }
             }
@@ -18,8 +20,10 @@
             "template_overlay": true, 
             "template": {
                 "setText": {
-                    "_newText": {
-                        "label": "Enter a new text."
+                    "inputs": {
+                        "_newText": {
+                            "label": "Enter a new text."
+                        }
                     }
                 }
             }

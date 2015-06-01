@@ -19,8 +19,9 @@ var Reactor = React.createClass({
                     //remove parts of the ABI.
                     $.each(abi, function(i, obj) {
                         if(obj.name != undefined) {
-                            console.log(this.props.templates[result]);
+                            //console.log(this.props.templates[result]);
                             if(this.props.templates[result].hasOwnProperty(obj.name) == false) {
+                                console.log("deleting part of abi");
                                 console.log(abi[i]);
                                 delete abi[i];
                             }
@@ -33,7 +34,11 @@ var Reactor = React.createClass({
                 if(this.props.templates.hasOwnProperty(result)) {
                     contract_template = this.props.templates[result]; //if a contract has a template.
                 }
-                return <ContractWrapper key={result} name={result} contract_template={contract_template} compiled={this.props.compiled[result]} instance={instance} />;
+                return  (
+                    <div key={result}>
+                    <ContractWrapper key={result} name={result} contract_template={contract_template} compiled={this.props.compiled[result]} instance={instance} />
+                    </div>
+                )
             }, this)}
         </div>
         );

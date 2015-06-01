@@ -17,17 +17,28 @@ var FunctionWrapper = React.createClass({
     },
     render: function() {
         //use react refs to keep track of inputs to a function.
-        return (<div>
+        if(this.props.function_template.button != undefined) {
+            var button = <div><button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"transact")}>{this.props.function_template.button}</button></div>;
+        } else {
+            var button = <div><button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"call")}>Call() {this.props.data.name}</button> - <button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"transact")}>Transact() {this.props.data.name}</button></div>;
+        }
+        return (
+        <div>
             {this.props.data.inputs.map(function(result) {
                 var input_template = {};
-                if (this.props.function_template.hasOwnProperty(result.name)) { //if a specific function has a template for it.
-                    input_template = this.props.function_template[result.name];
+                var arg = result.name;
+                if (this.props.function_template.inputs.hasOwnProperty(result.name)) { //if a specific function has a template for it.
+                    input_template = this.props.function_template.inputs[result.name];
+                    arg = this.props.function_template.inputs[result.name].default_value;
                 }
-                return <div key={result.name}> <InputWrapper input_template={input_template} ref={result.name} arg={result.name} /> </div>
+
+                return <div key={result.name}><InputWrapper input_template={input_template} ref={result.name} arg={arg} /></div>
             }, this)}
-            <button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"call")}>Call() {this.props.data.name}</button> - <button className={"btn btn-default"} onClick={this.executeFunction.bind(this,"transact")}>Transact() {this.props.data.name}</button>
-            <br /><br />
+            <br />
+
+            {button}
         </div>
         );
+            
     }
 });
