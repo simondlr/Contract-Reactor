@@ -50,10 +50,12 @@ $.ajax({
                     */
                     compiled = web3.eth.compile.solidity(contract);
                     Object.keys(compiled).map(function(compiled_contract_name) {
-                        if(total_compiled.hasOwnProperty(compiled_contract_name) == false) { //not yet inserted
-                            addresses[compiled_contract_name] = data["contracts"][compiled_contract_name].address; //not sure why I've been doing [] & . notation here.
-                            templates[compiled_contract_name] = data["contracts"][compiled_contract_name].template;
-                            options[compiled_contract_name] = {"template_overlay": data["contracts"][compiled_contract_name].template_overlay};
+                        if(compiled_contract_name in data["contracts"]) {
+                            if(total_compiled.hasOwnProperty(compiled_contract_name) == false) { //not yet inserted
+                                addresses[compiled_contract_name] = data["contracts"][compiled_contract_name].address; //not sure why I've been doing [] & . notation here.
+                                templates[compiled_contract_name] = data["contracts"][compiled_contract_name].template;
+                                options[compiled_contract_name] = {"template_overlay": data["contracts"][compiled_contract_name].template_overlay};
+                            }
                         }
                     });
                     $.extend(total_compiled, compiled);

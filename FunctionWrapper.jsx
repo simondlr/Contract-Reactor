@@ -27,9 +27,11 @@ var FunctionWrapper = React.createClass({
             {this.props.data.inputs.map(function(result) {
                 var input_template = {};
                 var arg = result.name;
-                if (this.props.function_template.inputs.hasOwnProperty(result.name)) { //if a specific function has a template for it.
-                    input_template = this.props.function_template.inputs[result.name];
-                    arg = this.props.function_template.inputs[result.name].default_value;
+                if("inputs" in this.props.function_template) {
+                    if (this.props.function_template.inputs.hasOwnProperty(result.name)) { //if a specific function has a template for it.
+                        input_template = this.props.function_template.inputs[result.name];
+                        arg = this.props.function_template.inputs[result.name].default_value;
+                    }
                 }
 
                 return <div key={result.name}><InputWrapper input_template={input_template} ref={result.name} arg={arg} /></div>
