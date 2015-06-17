@@ -17,7 +17,7 @@ var Reactor = React.createClass({
                 var abi = this.props.compiled[result].info.abiDefinition;
 
                 if(this.props.templates.hasOwnProperty(result)) {
-                    if(this.props.templates.result != undefined) {
+                    if(this.props.templates[result] != undefined) {
                         contract_template = this.props.templates[result]; //if a contract has a template.
 
                         if(this.props.options[result]["template_overlay"] == false) {

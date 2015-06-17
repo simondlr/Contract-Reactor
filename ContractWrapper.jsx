@@ -10,7 +10,7 @@ var ContractWrapper = React.createClass({
                     if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.
                         //react key = unique function name for contract.
                         var function_template = {};
-                        console.log(this.props);
+                        //TODO: Same name functions might cause an issue. Do similar to key down below or like msg.sg. function(uint,bytes32) etc
                         if (this.props.contract_template.hasOwnProperty(result.name)) { //if a specific function has a template for it.
                             function_template = this.props.contract_template[result.name];
                         }
