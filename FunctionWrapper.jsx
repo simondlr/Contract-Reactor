@@ -17,8 +17,6 @@ var FunctionWrapper = React.createClass({
         if(type == "call") {
             this.props.instance[function_name].call.apply(this, args_array);
         } else if(type == "transact") {
-            console.log(args);
-            console.log(args_array);
             //result = this.props.instance[function_name].sendTransaction(args);
             this.props.instance[function_name].sendTransaction.apply(this, args_array);
         }
