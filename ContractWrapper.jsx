@@ -1,10 +1,14 @@
 //takes compiled code, instance and template.
 var ContractWrapper = React.createClass({
     render: function() {
+        dep = "";
+        if(this.props.deploy == true) {
+            dep = <DeployWrapper compiled={this.props.compiled} name={this.props.name} instance={this.props.instance}/>
+        }
+
         return (
             <div>
-            Specified address of contract is {this.props.instance.address}.
-            <DeployWrapper compiled={this.props.compiled} name={this.props.name} instance={this.props.instance}/>
+            {dep}
             <ul>
                 {this.props.compiled.info.abiDefinition.map(function(result) {
                     if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.

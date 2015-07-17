@@ -45,6 +45,7 @@ var FunctionWrapper = React.createClass({
             <br />
 
             {button}
+            <br />
         </div>
         );
             

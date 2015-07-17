@@ -35,10 +35,16 @@ var Reactor = React.createClass({
                             console.log("false");
                         }
                     }
+
+                     
+                    if (this.props.options[result].hasOwnProperty("deploy_overlay")) {
+                        console.log(this.props.options[result].deploy_overlay);
+                        deploy = this.props.options[result].deploy_overlay;
+                    } else {deploy = false;}
                 }
                 return  (
                     <div key={result}>
-                    <ContractWrapper key={result} name={result} contract_template={contract_template} compiled={this.props.compiled[result]} instance={instance} />
+                    <ContractWrapper key={result} deploy={deploy} name={result} contract_template={contract_template} compiled={this.props.compiled[result]} instance={instance} />
                     </div>
                 )
             }, this)}
