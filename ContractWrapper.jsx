@@ -1,7 +1,11 @@
 //takes compiled code, instance and template.
+var React = require('react');
+var FunctionWrapper = require("./FunctionWrapper.jsx");
+var DeployWrapper = require("./DeployWrapper.jsx");
+
 var ContractWrapper = React.createClass({
     render: function() {
-        dep = "";
+        var dep = "";
         if(this.props.deploy == true) {
             dep = <DeployWrapper compiled={this.props.compiled} name={this.props.name} instance={this.props.instance}/>
         }
@@ -31,3 +35,5 @@ var ContractWrapper = React.createClass({
         );
     }
 });
+
+module.exports = ContractWrapper;

@@ -1,3 +1,6 @@
+var React = require('react');
+var web3 = require('web3');
+
 var DeployWrapper = React.createClass({
     getInitialState: function() {
         //check if contract exists
@@ -40,3 +43,5 @@ var DeployWrapper = React.createClass({
         }
     }
 });
+
+module.exports = DeployWrapper;

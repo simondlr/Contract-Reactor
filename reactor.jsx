@@ -1,6 +1,8 @@
 //TODO: Add control panel. Starts mining & unlocks + result view (instead of JS console)
 //TODO: config.json doesn't feel 100% the best route to take... Potentially refactor into one, and allow rewriting of it (when addresses are created)
 //TODO: Templating should be derived from the .sol eventually.
+var React = require('react');
+var ContractWrapper = require("./ContractWrapper.jsx");
 
 var Reactor = React.createClass({
     render: function() {
@@ -36,11 +38,11 @@ var Reactor = React.createClass({
                         }
                     }
 
-                     
+                    var deploy = false; 
                     if (this.props.options[result].hasOwnProperty("deploy_overlay")) {
                         console.log(this.props.options[result].deploy_overlay);
                         deploy = this.props.options[result].deploy_overlay;
-                    } else {deploy = false;}
+                    }
                 }
                 return  (
                     <div key={result}>
@@ -52,3 +54,5 @@ var Reactor = React.createClass({
         );
     }
 });
+
+module.exports = Reactor;

@@ -14,6 +14,13 @@ var urlParams;
 })();
 /*------------------*/
 
+var jQuery = require('jquery');
+window.$ = window.jQuery = jQuery;
+var React = require('react');
+var web3 = require('web3');
+require('bootstrap-webpack');
+var Reactor = require("./reactor.jsx");
+
 var config;
 if("config" in urlParams) {
     config = urlParams['config'];
@@ -48,7 +55,7 @@ $.ajax({
                     This is slightly "hacky". If one file has multiple contracts, it returns one dictionary.
                     This concatenates them in the scenario where there are multiple files as well.
                     */
-                    compiled = web3.eth.compile.solidity(contract);
+                    var compiled = web3.eth.compile.solidity(contract);
                     console.log(data["contracts"]);
                     Object.keys(compiled).map(function(compiled_contract_name) {
                         if(compiled_contract_name in data["contracts"]) {

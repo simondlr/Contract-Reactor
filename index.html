@@ -5,13 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contract Reactor (for Ethereum)</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/bignumber.js/bignumber.min.js"></script>
-    <script src="bower_components/web3/dist/web3.js"></script><!--debugging-->
-    <script src="bower_components/react/react.js"></script><!--debugging-->
-    <script src="bower_components/react/JSXTransformer.js"></script>
+    <script src="dist/bundle.js"></script>
     <script>
         if (typeof web3 === "undefined") {
             web3 = require('web3');
@@ -49,14 +43,6 @@
 
 </div>
 
-    <!-- Development Purposes. AlethZero is caching very aggressively -->
-    <!-- Run web root where reactor.jsx is. -->
-    <script>document.write('<script type="text/jsx" src="InputWrapper.jsx?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> 
-    <script>document.write('<script type="text/jsx" src="FunctionWrapper.jsx?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> 
-    <script>document.write('<script type="text/jsx" src="DeployWrapper.jsx?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> 
-    <script>document.write('<script type="text/jsx" src="ContractWrapper.jsx?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> 
-    <script>document.write('<script type="text/jsx" src="reactor.jsx?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> 
-    <script>document.write('<script type="text/jsx" src="script.jsx?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> 
 </body>
 
 </html>

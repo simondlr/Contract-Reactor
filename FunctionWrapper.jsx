@@ -1,4 +1,8 @@
 //takes instance and its part of the ABI + its part of the template
+var React = require('react');
+var web3 = require('web3');
+var InputWrapper = require("./InputWrapper.jsx");
+
 var FunctionWrapper = React.createClass({
     executeFunction: function(type) {
         args = {};
@@ -51,3 +55,5 @@ var FunctionWrapper = React.createClass({
             
     }
 });
+
+module.exports = FunctionWrapper;

@@ -1,4 +1,5 @@
 //takes reference & name for arguments
+var React = require('react');
 var InputWrapper = React.createClass({
     getInitialState: function() {
         return {
@@ -12,3 +13,5 @@ var InputWrapper = React.createClass({
         return <div> {this.props.input_template.label} <input className={"form-control"} type="text" value={this.state.value} placeholder={this.props.arg} onChange={this.handleChange}/> </div>
     }
 });
+
+module.exports = InputWrapper;
