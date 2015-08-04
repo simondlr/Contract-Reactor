@@ -5197,7 +5197,7 @@ var module = module || undefined;
 (function(module) {
   var __helpers = {
     provision_contracts: function(scope) {
-      scope.__contracts = JSON.parse("{\n  \".Standard_Token.sol\": {\n    \"source\": \"/Users/simon/code/ethereum/js/ether_reactor/example/contracts/.Standard_Token.sol.swp\"\n  },\n  \"Standard_Token\": {\n    \"source\": \"/Users/simon/code/ethereum/js/ether_reactor/example/contracts/Standard_Token.sol\"\n  }\n}");
+      scope.__contracts = JSON.parse("{}");
 
       for (var key in scope.__contracts) {
         var contract = scope.__contracts[key];
@@ -24877,7 +24877,7 @@ var config;
 if ("config" in urlParams) {
     config = urlParams['config'];
 } else {
-    var config = 'reactor_config.json'; //default
+    var config = './reactor_config.json'; //default
 }
 
 $.ajax({

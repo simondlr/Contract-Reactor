@@ -18,7 +18,7 @@ var config;
 if("config" in urlParams) {
     config = urlParams['config'];
 } else {
-    var config = 'reactor_config.json'; //default
+    var config = './reactor_config.json'; //default
 }
 
 $.ajax({
