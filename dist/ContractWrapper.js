@@ -1,20 +1,16 @@
 //takes compiled code, instance and template.
-var React = require('react');
-var FunctionWrapper = require("./FunctionWrapper.jsx");
-var DeployWrapper = require("./DeployWrapper.jsx");
-
-var ContractWrapper = React.createClass({
+var ContractWrapper = React.createClass({displayName: "ContractWrapper",
     render: function() {
         var dep = "";
         if(this.props.deploy == true) {
-            dep = <DeployWrapper compiled={this.props.compiled} name={this.props.name} instance={this.props.instance}/>
+            dep = React.createElement(DeployWrapper, {compiled: this.props.compiled, name: this.props.name, instance: this.props.instance})
         }
 
         return (
-            <div>
-            {dep}
-            <ul>
-                {this.props.compiled.info.abiDefinition.map(function(result) {
+            React.createElement("div", null, 
+            dep, 
+            React.createElement("ul", null, 
+                this.props.compiled.info.abiDefinition.map(function(result) {
                     if(result.type == "function") { //TODO: Determine whether events can be called from outside, otherwise it should be included.
                         //react key = unique function name for contract.
                         var function_template = {};
@@ -27,13 +23,12 @@ var ContractWrapper = React.createClass({
                             args += obj.type;
                         });
                         var key = result.name + args; //function()arg1typearg2type, etc
-                        return <FunctionWrapper function_template={function_template} instance={this.props.instance} key={key} data={result}/>;
+                        return React.createElement(FunctionWrapper, {function_template: function_template, instance: this.props.instance, key: key, data: result});
                     }
-                }, this)}
-            </ul>
-            </div>
+                }, this)
+            )
+            )
         );
     }
 });
 
-module.exports = ContractWrapper;

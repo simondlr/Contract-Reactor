@@ -1,19 +1,17 @@
-//TODO: Add control panel. Starts mining & unlocks + result view (instead of JS console)
-//TODO: config.json doesn't feel 100% the best route to take... Potentially refactor into one, and allow rewriting of it (when addresses are created)
-//TODO: Templating should be derived from the .sol eventually.
-var React = require('react');
-var ContractWrapper = require("./ContractWrapper.jsx");
+/*
+A helper component that takes ABIs and automatically cascades to the relevant parts & components.
+*/
 
-var Reactor = React.createClass({
+var ContainerHelper = React.createClass({displayName: "ContainerHelper",
     render: function() {
         return (
-        <div>
-            {Object.keys(this.props.compiled).map(function(result) { //iterate through multiple contracts based on keys
+        React.createElement("div", null, 
+            Object.keys(this.props.compiled).map(function(result) { //iterate through multiple contracts based on keys
                 //console.log(this.props.compiled[result]);
                 //var abi = this.props.compiled[result].info.abiDefinition;
                 var contract = web3.eth.contract(this.props.compiled[result].info.abiDefinition);
                 var instance = contract.at(this.props.addresses[result]);
-                <hr/>
+                React.createElement("hr", null)
                 var contract_template = {};
                 var new_compiled = this.props.compiled;
                 var abi = this.props.compiled[result].info.abiDefinition;
@@ -45,14 +43,13 @@ var Reactor = React.createClass({
                     }
                 }
                 return  (
-                    <div key={result}>
-                    <ContractWrapper key={result} deploy={deploy} name={result} contract_template={contract_template} compiled={this.props.compiled[result]} instance={instance} />
-                    </div>
+                    React.createElement("div", {key: result}, 
+                    React.createElement(ContractWrapper, {key: result, deploy: deploy, name: result, contract_template: contract_template, compiled: this.props.compiled[result], instance: instance})
+                    )
                 )
-            }, this)}
-        </div>
+            }, this)
+        )
         );
     }
 });
 
-module.exports = Reactor;

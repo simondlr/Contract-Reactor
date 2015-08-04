@@ -14,18 +14,11 @@ var urlParams;
 })();
 /*------------------*/
 
-var jQuery = require('jquery');
-window.$ = window.jQuery = jQuery;
-var React = require('react');
-var web3 = require('web3');
-require('bootstrap-webpack');
-var Reactor = require("./reactor.jsx");
-
 var config;
 if("config" in urlParams) {
     config = urlParams['config'];
 } else {
-    var config = 'reactor_config.json'; //random default
+    var config = 'reactor_config.json'; //default
 }
 
 $.ajax({
@@ -37,7 +30,7 @@ $.ajax({
     },
     success: function(data) {
         //map through multiple contracts (this includes multiple ones in 1 file + different files).
-        //console.log(data);
+        console.log(data);
         var total_compiled = {};
         var addresses = {}; 
         var templates = {};
@@ -56,6 +49,7 @@ $.ajax({
                     This concatenates them in the scenario where there are multiple files as well.
                     */
                     var compiled = web3.eth.compile.solidity(contract);
+                    console.log(compiled);
                     console.log(data["contracts"]);
                     Object.keys(compiled).map(function(compiled_contract_name) {
                         if(compiled_contract_name in data["contracts"]) {
@@ -78,6 +72,6 @@ $.ajax({
         console.log(addresses); 
         console.log(templates); 
         console.log(options); 
-        React.render(<Reactor templates={templates} compiled={total_compiled} addresses={addresses} options={options}/>, document.getElementById('contracts'));
+        React.render(<ContainerHelper templates={templates} compiled={total_compiled} addresses={addresses} options={options}/>, document.getElementById('contracts'));
     }
 });

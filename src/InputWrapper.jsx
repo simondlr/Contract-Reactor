@@ -1,5 +1,4 @@
 //takes reference & name for arguments
-var React = require('react');
 var InputWrapper = React.createClass({
     getInitialState: function() {
         return {
@@ -14,4 +13,3 @@ var InputWrapper = React.createClass({
     }
 });
 
-module.exports = InputWrapper;

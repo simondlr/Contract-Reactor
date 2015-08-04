@@ -1,7 +1,7 @@
 {
-    "name": "contract-reactor",
+    "name": "contract-reactor-example",
     "version": "0.0.1",
-    "description": "Scaffold front-ends from Ethereum ABIs",
+    "description": "Example for Contract Reactor",
     "devDependencies": {
         "babel-core": "5.6.18",
         "json-loader": "^0.5.2",
@@ -19,5 +19,4 @@
         "file-loader": "^0.8.4"
     }
 }
-
 

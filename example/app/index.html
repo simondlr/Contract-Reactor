@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contract Reactor (for Ethereum)</title>
+    <link href="./app.css" rel='stylesheet' type='text/css'>
+    <script src="./app.js"></script>
+    <!--<script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react/dist/JSXTransformer.js"></script>
+    <script src="js/bundled_reactor.js"></script>
+    <script src="js/script.jsx"></script>-->
+    <!--<script>
+        if (typeof web3 === "undefined") {
+            web3 = require('web3');
+            window.web3 = web3;
+        }
+
+        //connect to either aleth/mist depending what is online. Prefer Mist as is supposed to be more usable one into the future.
+        //this looks ugly. There must be better convention.
+        try {
+            web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545')); //mist port
+            console.log(web3.eth.blockNumber);
+            console.log("Connected to Mist/Ethereum on port 8545");
+        } catch(err) {
+            console.log("Mist's RPC port is not online, or the port has changed.");
+            try {
+                web3.setProvider(new web3.providers.HttpProvider('http://localhost:8080')); //cpp-port
+                console.log(web3.eth.blockNumber);
+                console.log("Connected to Aleth/cpp-eth on port 8080");
+            } catch(err) {
+                console.log("AlethZero's RPC port is not online, or the port has changed.");
+            }
+        }
+    </script>-->
+
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h3>Contract Reactor</h3>
+    </div>
+    
+    <div id="contracts">
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,10 +1,16 @@
 #Contract Reactor (Alpha)
 
+(BUSY WITH LARGE REFACTOR. HERE BE RADIOACTIVITY. DON'T HEAD THIS README YET)
+
 Given a contract ABI & contract address, the "Contract Reactor" automatically creates a React component to interact with that contract. It creates functions and forms to pass arguments to them. Mainly useful (at this point) as a way to easily scaffold front-end functions to interact with a contract during testing.
 
 ## Installation
 
 It requires React.js & Web3. If other Javascript APIs become available, it will be made more modular. See bower.json in examples for an example.
+
+jsx -x jsx src dist
+cd into dist.
+uglifyjs ContainerHelper.js ContractWrapper.js FunctionWrapper.js InputWrapper.js DeployWrapper.js > reactor.js
 
 ## Using it
 
