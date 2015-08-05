@@ -12,10 +12,6 @@ The Reactor can be found in dist/reactor.js. It contains exported variables read
 
 There are 5 components for various granularities.
 
-### ContainerHelper:
-
-This is a helper component. It takes a config file with the source to contracts, as well as the additional information it needs (such as the templates and what to do with it), and then packages it so that you can immediately create an automatic front-end component. The config/templating section has more information.
-
 ### ContractWrapper:
 
 Requires the following props:  
@@ -61,6 +57,9 @@ Required props:
 - addresses: A dictionary of contract_name -> address.  
 - options: A dictionary of options for the various components (see Templating).  d
 
+### ConfigParser
+
+This is a function that takes a reactor config file and strips into the required components ready to be sent to a ContainerHelper. See the example to see how it was used.
 
 ## Using it
 
@@ -125,15 +124,15 @@ The example uses a basic token, and scaffolds out all the forms/inputs for it. I
 
 If you want to build on this and compile a new distributable version, you must run the following commands. First install, jsx & uglifyjs. Then do the following:
 
-jsx -x jsx src dist  
+```jsx -x jsx src dist```
 cd into dist.  
-uglifyjs ContainerHelper.js ContractWrapper.js FunctionWrapper.js InputWrapper.js DeployWrapper.js > reactor.js  
+```uglifyjs ConfigParser.js ContainerHelper.js ContractWrapper.js FunctionWrapper.js InputWrapper.js DeployWrapper.js > reactor.js```
 
 Now you can pass reactor.js around as you wish.
 
 ## Status/TODO
 
-I'd consider this 80% towards a first proper release. I'm mainly contemplating some final design issues, especially wrt bringing in the script from the jsx as another helper tool (essentially ConfigParser).
+I'd consider this 85% towards a first proper release. I'm mainly contemplating some final design issues.
 
 ##Licence
 
