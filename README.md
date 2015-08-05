@@ -124,9 +124,9 @@ The example uses a basic token, and scaffolds out all the forms/inputs for it. I
 
 If you want to build on this and compile a new distributable version, you must run the following commands. First install, jsx & uglifyjs. Then do the following:
 
-```jsx -x jsx src dist```
-cd into dist.  
-```uglifyjs ConfigParser.js ContainerHelper.js ContractWrapper.js FunctionWrapper.js InputWrapper.js DeployWrapper.js > reactor.js```
+```jsx -x jsx src dist```  
+```cd dist```    
+```uglifyjs ConfigParser.js ContainerHelper.js ContractWrapper.js FunctionWrapper.js InputWrapper.js DeployWrapper.js > reactor.js```  
 
 Now you can pass reactor.js around as you wish.
 
